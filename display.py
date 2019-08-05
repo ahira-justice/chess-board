@@ -10,7 +10,7 @@ import time
 import pygame
 from pygame.locals import *
 
-import display.board as board
+import board
 
 
 os.environ['SDL_VIDEO_CENTERED'] = '1' # Centre display window.

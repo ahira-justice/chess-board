@@ -8,8 +8,8 @@ import os
 import sys
 import pygame
 
-import display.pieces as pieces
-import display.fenparser as fenparser
+import pieces
+import fenparser
 
 
 class Board:
@@ -39,8 +39,8 @@ class Board:
         (a1, b1, c1, d1, e1, f1, g1, h1)
     )
 
-    btile = pygame.image.load('display/images/btile.png')
-    wtile = pygame.image.load('display/images/wtile.png')
+    btile = pygame.image.load('images/btile.png')
+    wtile = pygame.image.load('images/wtile.png')
 
     def __init__(self, colors, BGCOLOR, DISPLAYSURF):
         self.colors = colors
