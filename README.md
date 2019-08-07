@@ -1,7 +1,7 @@
 # chess-board
 
-pip install chess-board
+## pip install chess-board
 
-import chessboard
+## import chessboard
 
-from chessboard import *
+## from chessboard import *
