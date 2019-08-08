@@ -69,6 +69,7 @@ def update(fen):
     checkForQuit()
     gameboard.displayBoard()
     gameboard.updatePieces(fen)
+
     pygame.display.update()
     FPSCLOCK.tick(FPS)
 
