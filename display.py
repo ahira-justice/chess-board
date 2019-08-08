@@ -42,6 +42,8 @@ def checkForQuit():
         if event.key == K_ESCAPE:
             terminate() # terminate if the KEYUP event was for the Esc key
         pygame.event.post(event) # put the other KEYUP event objects back
+    
+    return False
 
 
 def start():
@@ -69,3 +71,8 @@ def update(fen):
     gameboard.updatePieces(fen)
     pygame.display.update()
     FPSCLOCK.tick(FPS)
+
+if __name__ == "__main__":
+    pygame.init()
+    while not checkForQuit():
+        start()
