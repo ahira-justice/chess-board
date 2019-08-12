@@ -11,6 +11,8 @@ or
 # install with pipenv
 pipenv install chess-board
 
+or
+
 # install system-wide (not adviced)
 sudo pip install chess-board
 ```
@@ -18,7 +20,7 @@ sudo pip install chess-board
 ```sh
 pygame
 ```
-**chess-board** installation automatically installs latest **pygame** version
+**chess-board** installation automatically installs latest **pygame** version.
 
 ## License
 
