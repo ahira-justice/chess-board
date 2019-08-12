@@ -8,8 +8,12 @@ import os
 import sys
 import pygame
 
-import pieces
-import fenparser
+from . import pieces
+from . import fenparser
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+IMAGE_DIR = os.path.join(BASE_DIR, 'chessboard/images')
 
 
 class Board:
@@ -39,8 +43,8 @@ class Board:
         (a1, b1, c1, d1, e1, f1, g1, h1)
     )
 
-    btile = pygame.image.load('images/btile.png')
-    wtile = pygame.image.load('images/wtile.png')
+    btile = pygame.image.load(os.path.join(IMAGE_DIR, 'btile.png'))
+    wtile = pygame.image.load(os.path.join(IMAGE_DIR, 'wtile.png'))
 
     def __init__(self, colors, BGCOLOR, DISPLAYSURF):
         self.colors = colors

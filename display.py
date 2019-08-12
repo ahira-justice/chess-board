@@ -10,13 +10,19 @@ import time
 import pygame
 from pygame.locals import *
 
-import board
+from . import board
 
 
 os.environ['SDL_VIDEO_CENTERED'] = '1' # Centre display window.
 
 FPS = 30
 FPSCLOCK = pygame.time.Clock()
+
+DISPLAYSURF = None
+
+BASICFONT = None
+
+gameboard = None
 
 colors = {
     'Ash':  ( 50,  50,  50),
@@ -27,6 +33,7 @@ colors = {
 BGCOLOR = colors['Ash']
 
 WINDOWWIDTH, WINDOWHEIGHT = 600, 600
+
 BASICFONTSIZE = 30
 
 
@@ -46,8 +53,7 @@ def checkForQuit():
     return False
 
 
-def start():
-    global DISPLAYSURF,BASICFONT, gameboard
+def start(fen=''):
     pygame.init()
 
     # Setting up the GUI window.
@@ -60,7 +66,11 @@ def start():
     DISPLAYSURF.fill(BGCOLOR)
     gameboard = board.Board(colors, BGCOLOR, DISPLAYSURF)
     gameboard.displayBoard()
-    gameboard.drawPieces()
+
+    if (fen):
+        gameboard.updatePieces(fen)
+    else:
+        gameboard.drawPieces()
     
     pygame.display.update()
     FPSCLOCK.tick(FPS)
@@ -72,8 +82,3 @@ def update(fen):
 
     pygame.display.update()
     FPSCLOCK.tick(FPS)
-
-if __name__ == "__main__":
-    pygame.init()
-    while not checkForQuit():
-        start()

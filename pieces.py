@@ -9,6 +9,9 @@ import sys
 import pygame
 
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+IMAGE_DIR = os.path.join(BASE_DIR, 'chessboard/images')
+
 BLACK = 'BLACK'
 WHITE = 'WHITE'
 
@@ -21,19 +24,19 @@ ROOK = 'ROOK'
 
 
 class Piece:
-    bBishop = pygame.image.load('images/bB.png')
-    bKing = pygame.image.load('images/bK.png')
-    bKnight = pygame.image.load('images/bN.png')
-    bPawn = pygame.image.load('images/bP.png')
-    bQueen = pygame.image.load('images/bQ.png')
-    bRook = pygame.image.load('images/bR.png')
+    bBishop = pygame.image.load(os.path.join(IMAGE_DIR, 'bB.png'))
+    bKing = pygame.image.load(os.path.join(IMAGE_DIR, 'bK.png'))
+    bKnight = pygame.image.load(os.path.join(IMAGE_DIR, 'bN.png'))
+    bPawn = pygame.image.load(os.path.join(IMAGE_DIR, 'bP.png'))
+    bQueen = pygame.image.load(os.path.join(IMAGE_DIR, 'bQ.png'))
+    bRook = pygame.image.load(os.path.join(IMAGE_DIR, 'bR.png'))
 
-    wBishop = pygame.image.load('images/wB.png')
-    wKing = pygame.image.load('images/wK.png')
-    wKnight = pygame.image.load('images/wN.png')
-    wPawn = pygame.image.load('images/wP.png')
-    wQueen = pygame.image.load('images/wQ.png')
-    wRook = pygame.image.load('images/wR.png')
+    wBishop = pygame.image.load(os.path.join(IMAGE_DIR, 'wB.png'))
+    wKing = pygame.image.load(os.path.join(IMAGE_DIR, 'wK.png'))
+    wKnight = pygame.image.load(os.path.join(IMAGE_DIR, 'wN.png'))
+    wPawn = pygame.image.load(os.path.join(IMAGE_DIR, 'wP.png'))
+    wQueen = pygame.image.load(os.path.join(IMAGE_DIR, 'wQ.png'))
+    wRook = pygame.image.load(os.path.join(IMAGE_DIR, 'wR.png'))
 
     def __init__(self, color, piece, DISPLAYSURF):
         self.position = None
