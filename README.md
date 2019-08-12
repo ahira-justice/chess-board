@@ -1,9 +1,5 @@
 # chess-board
 
-## Dependencies
-
-pygame
-
 ## Installation
 Download and install the latest release:
 ```sh
@@ -18,7 +14,12 @@ pipenv install chess-board
 # install system-wide (not adviced)
 sudo pip install chess-board
 ```
+## Dependencies
+```sh
+pygame
+```
+**chess-board** installation automatically installs latest **pygame** version
 
 ## License
 
-[MIT License](LICENSE.md)
+[GNU GENERAL PUBLIC LICENSE](LICENSE.md)
