@@ -8,8 +8,8 @@ import os
 import pygame
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-IMAGE_DIR = os.path.join(BASE_DIR, 'chessboard/images')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGE_DIR = os.path.join(BASE_DIR, 'images')
 
 BLACK = 'BLACK'
 WHITE = 'WHITE'
