@@ -55,8 +55,8 @@ pipenv install chess-board
 
 or
 
-# install system-wide (not adviced)
-sudo pip install chess-board
+# install system-wide (windows), run cmd[powershell] as administrator
+pip install chess-board
 ```
 
 Alternatively, you could **git clone** this repo and add the directory to your package.
