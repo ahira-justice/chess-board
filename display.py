@@ -53,8 +53,9 @@ def checkForQuit():
 
 
 def start(fen=''):
+    global gameboard
     pygame.init()
-
+    
     # Setting up the GUI window.
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     pygame.display.set_caption('LOCI')
