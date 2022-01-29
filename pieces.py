@@ -5,24 +5,15 @@
 
 
 import os
+from typing import Tuple
 import pygame
-
+import chess
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGE_DIR = os.path.join(BASE_DIR, 'images')
 
-BLACK = 'BLACK'
-WHITE = 'WHITE'
 
-BISHOP = 'BISHOP'
-KING = 'KING'
-KNGHT = 'KNIGHT'
-PAWN = 'PAWN'
-QUEEN = 'QUEEN'
-ROOK = 'ROOK'
-
-
-class Piece:
+class PieceImage:
     bBishop = pygame.image.load(os.path.join(IMAGE_DIR, 'bB.png'))
     bKing = pygame.image.load(os.path.join(IMAGE_DIR, 'bK.png'))
     bKnight = pygame.image.load(os.path.join(IMAGE_DIR, 'bN.png'))
@@ -37,57 +28,34 @@ class Piece:
     wQueen = pygame.image.load(os.path.join(IMAGE_DIR, 'wQ.png'))
     wRook = pygame.image.load(os.path.join(IMAGE_DIR, 'wR.png'))
 
-    def __init__(self, color, piece, DISPLAYSURF):
+    pieceImages = [
+        (wPawn, bPawn),
+        (wKnight, bKnight),
+        (wBishop, bBishop),
+        (wRook, bRook),
+        (wQueen, bQueen),
+        (wKing, bKing)
+    ]
+
+    def __init__(self, color: chess.Color, piece_type: chess.PieceType, DISPLAYSURF, size: int):
         self.position = None
         self.sprite = None
         self.DISPLAYSURF = DISPLAYSURF
+        self.size = size
 
         self.color = color
-        self.piece = piece
+        self.piece_type = piece_type
 
         self.setSprite()
 
-    def setPosition(self, position):
+    def setPosition(self, position: Tuple[int, int]):
         self.position = position
     
 
-    def setSprite(self):        
-        if self.piece == BISHOP:
-            if self.color == BLACK:
-                self.sprite = Piece.bBishop
-            elif self.color == WHITE:
-                self.sprite = Piece.wBishop
-        
-        elif self.piece == KING:
-            if self.color == BLACK:
-                self.sprite = Piece.bKing
-            elif self.color == WHITE:
-                self.sprite = Piece.wKing
-        
-        elif self.piece == KNGHT:
-            if self.color == BLACK:
-                self.sprite = Piece.bKnight
-            if self.color == WHITE:
-                self.sprite = Piece.wKnight
-        
-        elif self.piece == PAWN:
-            if self.color == BLACK:
-                self.sprite = Piece.bPawn
-            elif self.color == WHITE:
-                self.sprite = Piece.wPawn
-        
-        elif self.piece == QUEEN:
-            if self.color == BLACK:
-                self.sprite = Piece.bQueen
-            elif self.color == WHITE:
-                self.sprite = Piece.wQueen
-        
-        elif self.piece == ROOK:
-            if self.color == BLACK:
-                self.sprite = Piece.bRook
-            elif self.color == WHITE:
-                self.sprite = Piece.wRook
+    def setSprite(self):
+        self.sprite = self.pieceImages[self.piece_type - 1][int(not self.color)]
 
 
     def displayPiece(self):
+        self.sprite = pygame.transform.scale(self.sprite, (self.size, self.size))
         self.DISPLAYSURF.blit(self.sprite, self.position)
