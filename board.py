@@ -76,22 +76,22 @@ class Board:
     def map_side(self, side, pos):
         for i in range(len(pos)):
             if i in [0, 1, 2, 3, 4, 5, 6, 7]:
-                piece = self.create_piece(side, PieceType.PAWN, Board.pos_b[i])
+                piece = self.create_piece(side, PieceType.PAWN, pos[i])
                 self.piece_rect.append(piece)
             elif i in [8, 15]:
-                piece = self.create_piece(side, PieceType.ROOK, Board.pos_b[i])
+                piece = self.create_piece(side, PieceType.ROOK, pos[i])
                 self.piece_rect.append(piece)
             elif i in [9, 14]:
-                piece = self.create_piece(side, PieceType.KNIGHT, Board.pos_b[i])
+                piece = self.create_piece(side, PieceType.KNIGHT, pos[i])
                 self.piece_rect.append(piece)
             elif i in [10, 13]:
-                piece = self.create_piece(side, PieceType.BISHOP, Board.pos_b[i])
+                piece = self.create_piece(side, PieceType.BISHOP, pos[i])
                 self.piece_rect.append(piece)
             elif i in [11]:
-                piece = self.create_piece(side, PieceType.QUEEN, Board.pos_b[i])
+                piece = self.create_piece(side, PieceType.QUEEN, pos[i])
                 self.piece_rect.append(piece)
             elif i in [12]:
-                piece = self.create_piece(side, PieceType.KING, Board.pos_b[i])
+                piece = self.create_piece(side, PieceType.KING, pos[i])
                 self.piece_rect.append(piece)
 
     def create_piece(self, color, piece_type, position):
