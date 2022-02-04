@@ -7,13 +7,10 @@ from pygame.locals import QUIT, KEYUP, K_ESCAPE
 from board import Board, Color
 from constants import FPS, WINDOW_WIDTH, WINDOW_HEIGHT
 
+
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # Centre display window.
 
 fps_clock = pygame.time.Clock()
-
-
-DISPLAY_SURF = None
-game_board = None
 
 
 def terminate():
@@ -29,33 +26,32 @@ def check_for_quit():
             terminate()
         pygame.event.post(event)
 
-    return False
 
-
-def start(fen='', bg_color=Color.ASH):
+def start(fen='', bg_color=Color.ASH, caption="chess-board"):
     pygame.init()
 
-    DISPLAY_SURF = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-    pygame.display.set_caption('LOCI')
+    display_surf = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+    pygame.display.set_caption(caption)
 
     check_for_quit()
 
-    DISPLAY_SURF.fill(bg_color)
-    game_board = Board(bg_color, DISPLAY_SURF)
-    game_board.display_board()
+    display_surf.fill(bg_color)
+    game_board = Board(bg_color, display_surf)
 
-    if fen:
-        game_board.update_pieces(fen)
-    else:
+    if not fen:
+        game_board.display_board()
         game_board.draw_pieces()
+    else:
+        game_board.update_pieces(fen)
 
     pygame.display.update()
     fps_clock.tick(FPS)
 
+    return game_board
 
-def update(fen):
+
+def update(fen, game_board):
     check_for_quit()
-    game_board.display_board()
     game_board.update_pieces(fen)
 
     pygame.display.update()

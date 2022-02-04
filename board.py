@@ -100,6 +100,7 @@ class Board:
         return piece
 
     def update_pieces(self, fen):
+        self.display_board()
         self.piece_rect = []
         fp = FenParser(fen)
         fen_board = fp.parse()
