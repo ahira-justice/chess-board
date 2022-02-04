@@ -1,39 +1,19 @@
-"""
-    Ahira Justice, ADEFOKUN
-    justiceahira@gmail.com
-"""
-
-
 import os
 import sys
 import pygame
-from pygame.locals import *
 
-from . import board
+from pygame.locals import QUIT, KEYUP, K_ESCAPE
+
+from board import Board, Color
+from constants import FPS, WINDOW_WIDTH, WINDOW_HEIGHT
+
+os.environ['SDL_VIDEO_CENTERED'] = '1'  # Centre display window.
+
+fps_clock = pygame.time.Clock()
 
 
-os.environ['SDL_VIDEO_CENTERED'] = '1' # Centre display window.
-
-FPS = 30
-FPSCLOCK = pygame.time.Clock()
-
-DISPLAYSURF = None
-
-BASICFONT = None
-
-gameboard = None
-
-colors = {
-    'Ash':  ( 50,  50,  50),
-    'White':(255, 255, 255),
-    'Black':(  0,   0,   0),
-}
-
-BGCOLOR = colors['Ash']
-
-WINDOWWIDTH, WINDOWHEIGHT = 600, 600
-
-BASICFONTSIZE = 30
+DISPLAY_SURF = None
+game_board = None
 
 
 def terminate():
@@ -41,43 +21,42 @@ def terminate():
     sys.exit()
 
 
-def checkForQuit():
-    for event in pygame.event.get(QUIT): # get all the QUIT events
-        terminate() #terminate if any QUIT events are present
-    for event in pygame.event.get(KEYUP): # get all the KEYUP events
+def check_for_quit():
+    for _ in pygame.event.get(QUIT):
+        terminate()
+    for event in pygame.event.get(KEYUP):
         if event.key == K_ESCAPE:
-            terminate() # terminate if the KEYUP event was for the Esc key
-        pygame.event.post(event) # put the other KEYUP event objects back
-    
+            terminate()
+        pygame.event.post(event)
+
     return False
 
 
-def start(fen=''):
+def start(fen='', bg_color=Color.ASH):
     pygame.init()
 
-    # Setting up the GUI window.
-    DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+    DISPLAY_SURF = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     pygame.display.set_caption('LOCI')
-    BASICFONT = pygame.font.SysFont('calibri', BASICFONTSIZE)
 
-    checkForQuit()
+    check_for_quit()
 
-    DISPLAYSURF.fill(BGCOLOR)
-    gameboard = board.Board(colors, BGCOLOR, DISPLAYSURF)
-    gameboard.displayBoard()
+    DISPLAY_SURF.fill(bg_color)
+    game_board = Board(bg_color, DISPLAY_SURF)
+    game_board.display_board()
 
-    if (fen):
-        gameboard.updatePieces(fen)
+    if fen:
+        game_board.update_pieces(fen)
     else:
-        gameboard.drawPieces()
-    
+        game_board.draw_pieces()
+
     pygame.display.update()
-    FPSCLOCK.tick(FPS)
+    fps_clock.tick(FPS)
+
 
 def update(fen):
-    checkForQuit()
-    gameboard.displayBoard()
-    gameboard.updatePieces(fen)
+    check_for_quit()
+    game_board.display_board()
+    game_board.update_pieces(fen)
 
     pygame.display.update()
-    FPSCLOCK.tick(FPS)
+    fps_clock.tick(FPS)

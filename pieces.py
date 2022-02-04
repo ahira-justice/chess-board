@@ -1,93 +1,87 @@
-"""
-    Ahira Justice, ADEFOKUN
-    justiceahira@gmail.com
-"""
-
-
 import os
 import pygame
 
+from constants import IMAGE_DIR
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGE_DIR = os.path.join(BASE_DIR, 'images')
 
-BLACK = 'BLACK'
-WHITE = 'WHITE'
+class PieceColor:
+    BLACK = 'BLACK'
+    WHITE = 'WHITE'
 
-BISHOP = 'BISHOP'
-KING = 'KING'
-KNGHT = 'KNIGHT'
-PAWN = 'PAWN'
-QUEEN = 'QUEEN'
-ROOK = 'ROOK'
+
+class PieceType:
+    BISHOP = 'BISHOP'
+    KING = 'KING'
+    KNIGHT = 'KNIGHT'
+    PAWN = 'PAWN'
+    QUEEN = 'QUEEN'
+    ROOK = 'ROOK'
 
 
 class Piece:
-    bBishop = pygame.image.load(os.path.join(IMAGE_DIR, 'bB.png'))
-    bKing = pygame.image.load(os.path.join(IMAGE_DIR, 'bK.png'))
-    bKnight = pygame.image.load(os.path.join(IMAGE_DIR, 'bN.png'))
-    bPawn = pygame.image.load(os.path.join(IMAGE_DIR, 'bP.png'))
-    bQueen = pygame.image.load(os.path.join(IMAGE_DIR, 'bQ.png'))
-    bRook = pygame.image.load(os.path.join(IMAGE_DIR, 'bR.png'))
+    b_bishop = pygame.image.load(os.path.join(IMAGE_DIR, 'bB.png'))
+    b_king = pygame.image.load(os.path.join(IMAGE_DIR, 'bK.png'))
+    b_knight = pygame.image.load(os.path.join(IMAGE_DIR, 'bN.png'))
+    b_pawn = pygame.image.load(os.path.join(IMAGE_DIR, 'bP.png'))
+    b_queen = pygame.image.load(os.path.join(IMAGE_DIR, 'bQ.png'))
+    b_rook = pygame.image.load(os.path.join(IMAGE_DIR, 'bR.png'))
 
-    wBishop = pygame.image.load(os.path.join(IMAGE_DIR, 'wB.png'))
-    wKing = pygame.image.load(os.path.join(IMAGE_DIR, 'wK.png'))
-    wKnight = pygame.image.load(os.path.join(IMAGE_DIR, 'wN.png'))
-    wPawn = pygame.image.load(os.path.join(IMAGE_DIR, 'wP.png'))
-    wQueen = pygame.image.load(os.path.join(IMAGE_DIR, 'wQ.png'))
-    wRook = pygame.image.load(os.path.join(IMAGE_DIR, 'wR.png'))
+    w_bishop = pygame.image.load(os.path.join(IMAGE_DIR, 'wB.png'))
+    w_king = pygame.image.load(os.path.join(IMAGE_DIR, 'wK.png'))
+    w_knight = pygame.image.load(os.path.join(IMAGE_DIR, 'wN.png'))
+    w_pawn = pygame.image.load(os.path.join(IMAGE_DIR, 'wP.png'))
+    w_queen = pygame.image.load(os.path.join(IMAGE_DIR, 'wQ.png'))
+    w_rook = pygame.image.load(os.path.join(IMAGE_DIR, 'wR.png'))
 
-    def __init__(self, color, piece, DISPLAYSURF):
+    def __init__(self, color, piece, DISPLAY_SURF):
         self.position = None
         self.sprite = None
-        self.DISPLAYSURF = DISPLAYSURF
+        self.DISPLAY_SURF = DISPLAY_SURF
 
         self.color = color
         self.piece = piece
 
-        self.setSprite()
+        self.set_sprite()
 
-    def setPosition(self, position):
+    def set_position(self, position):
         self.position = position
-    
 
-    def setSprite(self):        
-        if self.piece == BISHOP:
-            if self.color == BLACK:
-                self.sprite = Piece.bBishop
-            elif self.color == WHITE:
-                self.sprite = Piece.wBishop
-        
-        elif self.piece == KING:
-            if self.color == BLACK:
-                self.sprite = Piece.bKing
-            elif self.color == WHITE:
-                self.sprite = Piece.wKing
-        
-        elif self.piece == KNGHT:
-            if self.color == BLACK:
-                self.sprite = Piece.bKnight
-            if self.color == WHITE:
-                self.sprite = Piece.wKnight
-        
-        elif self.piece == PAWN:
-            if self.color == BLACK:
-                self.sprite = Piece.bPawn
-            elif self.color == WHITE:
-                self.sprite = Piece.wPawn
-        
-        elif self.piece == QUEEN:
-            if self.color == BLACK:
-                self.sprite = Piece.bQueen
-            elif self.color == WHITE:
-                self.sprite = Piece.wQueen
-        
-        elif self.piece == ROOK:
-            if self.color == BLACK:
-                self.sprite = Piece.bRook
-            elif self.color == WHITE:
-                self.sprite = Piece.wRook
+    def set_sprite(self):
+        if self.piece == PieceType.BISHOP:
+            if self.color == PieceColor.BLACK:
+                self.sprite = Piece.b_bishop
+            elif self.color == PieceColor.WHITE:
+                self.sprite = Piece.w_bishop
 
+        elif self.piece == PieceType.KING:
+            if self.color == PieceColor.BLACK:
+                self.sprite = Piece.b_king
+            elif self.color == PieceColor.WHITE:
+                self.sprite = Piece.w_king
 
-    def displayPiece(self):
-        self.DISPLAYSURF.blit(self.sprite, self.position)
+        elif self.piece == PieceType.KNIGHT:
+            if self.color == PieceColor.BLACK:
+                self.sprite = Piece.b_knight
+            if self.color == PieceColor.WHITE:
+                self.sprite = Piece.w_knight
+
+        elif self.piece == PieceType.PAWN:
+            if self.color == PieceColor.BLACK:
+                self.sprite = Piece.b_pawn
+            elif self.color == PieceColor.WHITE:
+                self.sprite = Piece.w_pawn
+
+        elif self.piece == PieceType.QUEEN:
+            if self.color == PieceColor.BLACK:
+                self.sprite = Piece.b_queen
+            elif self.color == PieceColor.WHITE:
+                self.sprite = Piece.w_queen
+
+        elif self.piece == PieceType.ROOK:
+            if self.color == PieceColor.BLACK:
+                self.sprite = Piece.b_rook
+            elif self.color == PieceColor.WHITE:
+                self.sprite = Piece.w_rook
+
+    def display_piece(self):
+        self.DISPLAY_SURF.blit(self.sprite, self.position)
