@@ -17,12 +17,6 @@ class Board:
     g8, g7, g6, g5, g4, g3, g2, g1 = (400, 100), (400, 150), (400, 200), (400, 250), (400, 300), (400, 350), (400, 400), (400, 450)
     h8, h7, h6, h5, h4, h3, h2, h1 = (450, 100), (450, 150), (450, 200), (450, 250), (450, 300), (450, 350), (450, 400), (450, 450)
 
-    pos_b = [a7, b7, c7, d7, e7, f7, g7, h7,
-             a8, b8, c8, d8, e8, f8, g8, h8]
-
-    pos_w = [a2, b2, c2, d2, e2, f2, g2, h2,
-             a1, b1, c1, d1, e1, f1, g1, h1]
-
     board_rect = (
         (a8, b8, c8, d8, e8, f8, g8, h8),
         (a7, b7, c7, d7, e7, f7, g7, h7),
@@ -63,37 +57,6 @@ class Board:
                     else:
                         self.display_surf.blit(Board.w_tile, Board.board_rect[i - 1][j - 1])
 
-    def draw_pieces(self):
-        self.map_pieces()
-
-        for piece in self.piece_rect:
-            piece.display_piece()
-
-    def map_pieces(self):
-        self.map_side(PieceColor.BLACK, Board.pos_b)
-        self.map_side(PieceColor.WHITE, Board.pos_w)
-
-    def map_side(self, side, pos):
-        for i in range(len(pos)):
-            if i in [0, 1, 2, 3, 4, 5, 6, 7]:
-                piece = self.create_piece(side, PieceType.PAWN, pos[i])
-                self.piece_rect.append(piece)
-            elif i in [8, 15]:
-                piece = self.create_piece(side, PieceType.ROOK, pos[i])
-                self.piece_rect.append(piece)
-            elif i in [9, 14]:
-                piece = self.create_piece(side, PieceType.KNIGHT, pos[i])
-                self.piece_rect.append(piece)
-            elif i in [10, 13]:
-                piece = self.create_piece(side, PieceType.BISHOP, pos[i])
-                self.piece_rect.append(piece)
-            elif i in [11]:
-                piece = self.create_piece(side, PieceType.QUEEN, pos[i])
-                self.piece_rect.append(piece)
-            elif i in [12]:
-                piece = self.create_piece(side, PieceType.KING, pos[i])
-                self.piece_rect.append(piece)
-
     def create_piece(self, color, piece_type, position):
         piece = Piece(color, piece_type, self.display_surf)
         piece.set_position(position)
@@ -101,6 +64,9 @@ class Board:
 
     def update_pieces(self, fen):
         self.display_board()
+        self.draw_pieces(fen)
+
+    def draw_pieces(self, fen):
         self.piece_rect = []
         fp = FenParser(fen)
         fen_board = fp.parse()
