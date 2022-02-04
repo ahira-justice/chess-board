@@ -33,10 +33,10 @@ class Piece:
     w_queen = pygame.image.load(os.path.join(IMAGE_DIR, 'wQ.png'))
     w_rook = pygame.image.load(os.path.join(IMAGE_DIR, 'wR.png'))
 
-    def __init__(self, color, piece, DISPLAY_SURF):
+    def __init__(self, color, piece, display_surf):
         self.position = None
         self.sprite = None
-        self.DISPLAY_SURF = DISPLAY_SURF
+        self.display_surf = display_surf
 
         self.color = color
         self.piece = piece
@@ -84,4 +84,4 @@ class Piece:
                 self.sprite = Piece.w_rook
 
     def display_piece(self):
-        self.DISPLAY_SURF.blit(self.sprite, self.position)
+        self.display_surf.blit(self.sprite, self.position)
