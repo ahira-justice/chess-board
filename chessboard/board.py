@@ -1,10 +1,10 @@
 import os
 import pygame
 
-from constants import IMAGE_DIR
-from pieces import Piece, PieceColor, PieceType
-from fenparser import FenParser
-from utils import is_odd
+from chessboard.constants import IMAGE_DIR
+from chessboard.pieces import Piece, PieceColor, PieceType
+from chessboard.fenparser import FenParser
+from chessboard.utils import is_odd
 
 
 class Board:

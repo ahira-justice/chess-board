@@ -1,7 +1,7 @@
 import os
 import pygame
 
-from constants import IMAGE_DIR
+from chessboard.constants import IMAGE_DIR
 
 
 class PieceColor:

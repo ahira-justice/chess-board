@@ -18,7 +18,7 @@ URL = 'https://github.com/ahira-justice/chess-board'
 EMAIL = 'justiceahira@gmail.com'
 AUTHOR = 'Ahira Adefokun'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.3.0'
+VERSION = '0.3.1'
 
 # What packages are required for this module to be executed?
 REQUIRED = [

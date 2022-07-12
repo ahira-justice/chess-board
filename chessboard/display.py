@@ -4,8 +4,8 @@ import pygame
 
 from pygame.locals import QUIT, KEYUP, K_ESCAPE
 
-from board import Board, Color
-from constants import FPS, STARTING_FEN, WINDOW_CAPTION, WINDOW_WIDTH, WINDOW_HEIGHT
+from chessboard.board import Board, Color
+from chessboard.constants import FPS, STARTING_FEN, WINDOW_CAPTION, WINDOW_WIDTH, WINDOW_HEIGHT
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # Centre display window.
 
