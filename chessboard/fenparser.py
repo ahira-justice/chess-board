@@ -1,19 +1,11 @@
-"""
-    https://github.com/tlehman/fenparser
-"""
-
-
 import re
 from itertools import chain
 
 
 class FenParser():
-  def __init__(self, fen_str):
-    self.fen_str = fen_str
 
-
-  def parse(self):
-    ranks = self.fen_str.split(" ")[0].split("/")
+  def parse(self, fen_str):
+    ranks = fen_str.split(" ")[0].split("/")
     pieces_on_all_ranks = [self.parse_rank(rank) for rank in ranks]
     return pieces_on_all_ranks
 

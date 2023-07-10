@@ -47,7 +47,9 @@ while True:
     display.check_for_quit()
     display.update(valid_fen, game_board)
 
-display.terminate()
+    # board flip interface
+    if not game_board.flipped:
+        display.flip(game_board)
 
 ```
 

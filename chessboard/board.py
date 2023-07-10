@@ -36,6 +36,9 @@ class Board:
         self.display_surf = display_surf
 
         self.piece_rect = []
+        self.current_fen = ''
+        self.flipped = False
+        self.fp = FenParser()
 
     def display_board(self):
         self.display_surf.fill(self.bg_color)
@@ -58,8 +61,13 @@ class Board:
                         self.display_surf.blit(Board.w_tile, Board.board_rect[i - 1][j - 1])
 
     def update_pieces(self, fen):
+        self.current_fen = fen
         self.display_board()
         self.draw_pieces(fen)
+
+    def flip(self):
+        self.flipped = not self.flipped
+        self.update_pieces(self.current_fen)
 
     def create_piece(self, color, piece_type, position):
         piece = Piece(color, piece_type, self.display_surf)
@@ -91,10 +99,16 @@ class Board:
             piece = self.create_piece(color, PieceType.ROOK, position)
             self.piece_rect.append(piece)
 
+    def parse_fen(self, fen):
+        return self.fp.parse(fen)
+
     def draw_pieces(self, fen):
         self.piece_rect = []
-        fp = FenParser(fen)
-        fen_board = fp.parse()
+        fen_board = self.fp.parse(fen)
+
+        if self.flipped:
+            fen_board.reverse()
+            fen_board = list(map(lambda x: x[::-1], fen_board))
 
         for i in range(len(fen_board)):
             for j in range(len(fen_board[i])):

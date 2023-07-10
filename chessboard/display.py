@@ -46,3 +46,11 @@ def update(fen, game_board):
 
     pygame.display.update()
     fps_clock.tick(FPS)
+
+
+def flip(game_board: Board):
+    check_for_quit()
+    game_board.flip()
+
+    pygame.display.update()
+    fps_clock.tick(FPS)
